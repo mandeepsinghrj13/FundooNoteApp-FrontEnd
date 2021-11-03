@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.css";
-import Login from "./Components/login";
+import "./Pages/Login/login.scss";
+import { Switch, Route } from "react-router-dom";
+import Login from "./Pages/Login/login.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={Login} />
+      </Switch>
+    </>
   );
 }
 
