@@ -1,0 +1,44 @@
+.paperStyle {
+  padding: 20px;
+  height: 70vh;
+  width: 500px;
+  margin: 70px auto;
+}
+.textStyle {
+  width: 25vh;
+  padding-right: 15vh;
+}
+
+.textField {
+  width: 52vh;
+  margin-top: 20px;
+  padding: 20vh;
+}
+
+.head {
+  color: orange;
+}
+
+.button {
+  width: 52vh;
+  padding-top: 4vh;
+}
+.box {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding-top: 5vh;
+}
+
+.name {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.register-avatar {
+  position: relative;
+  width: 300px;
+  height: 200%;
+  left: 35vh;
+  bottom: 50vh;
+}
