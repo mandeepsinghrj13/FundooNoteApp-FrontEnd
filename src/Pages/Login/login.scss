@@ -2,8 +2,17 @@ body {
   background-color: whitesmoke;
 }
 .paperstyle {
-  padding: 20px;
+  padding: 30px;
   height: 60vh;
   width: 310px;
   margin: 70px auto;
+}
+.register {
+  text-align: center;
+}
+.MuiOutlinedInput-input {
+  padding: 12.5 px 14 px !important;
+}
+.MuiFormHelperText-root {
+  color: red !important;
 }
