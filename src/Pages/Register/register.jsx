@@ -1,46 +1,129 @@
 import React from 'react'
-import { Grid, Paper, Typography, TextField, Button,Link } from '@material-ui/core'
+import { Grid, Paper, TextField, Button } from '@material-ui/core'
+import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import FundooHeader from "../../Components/FundooHeader";
 import "../Register/register.scss";
+import * as Yup from "yup";
 const SignUp = () => {
-    const btnstyle = { margin: "10px 0px", padding:"7px 70px" };
-    return(     
-        <Grid>
-        <Paper elevation = {10} className = "paperStyle">
-          <Grid align="center">
-          <FundooHeader/>
-          </Grid>    
-          <Grid>
-            <TextField label="FirstName" placeholder="FirstName" type="text"  required />
-            </Grid>
-            <Grid>
-            <TextField label="LastName" placeholder="LastName" type="text"  required /> 
-            </Grid>     
-            <Grid>
-            <TextField label="Email" placeholder="Email" type="email" required />
-            </Grid>
-            <Grid>
-            <TextField label="Password" placeholder="Enter password" type="password"  required />
-            </Grid>
-            <Grid>
-              <Button  type="submit" color="primary" variant="contained"size="large" style={btnstyle} >
-                Sign in
-              </Button> 
-              </Grid>  
-              <Typography>
-          <Link href="#">Forgot password ?</Link>
-        </Typography>
-        <Typography>
-          Do you have an account ?<Link href="/">Sign in instead</Link>
-        </Typography>
-                <Typography>
-                <div className="register-avatar">
-                    <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt=''></img>
-                </div>
-                </Typography>                 
-        </Paper>        
-        </Grid>
-    )
-}
+  const initialValuesSignUp = {
+    FirstName: "",
+    LastName: "",
+    email: "",
+    Password: "",
+    ConfirmPassword: "",
+  };
 
+  const onSubmitSignUP = (values, props) => {
+    console.log(values);  
+    props.resetForm()
+  };
+
+  const validationSchemaSignUp = Yup.object().shape({
+    FirstName: Yup.string()   
+      .required("Required"),
+    LastName: Yup.string()  
+      .required("Required"),
+    email: Yup.string()
+      .email("Enter valid Email")
+      .required("Required"),
+    Password: Yup.string() 
+      .required("Required"),
+    ConfirmPassword: Yup.string()
+      .oneOf([Yup.ref("Password")], "Password not matched")
+      .required("Required"),
+  });
+
+  return (   
+      <Grid className="display-center">
+        <Paper elevation={20} className="paperStyleSignUP">
+          <Grid container spacing={2}>
+            <Grid item sm={6} md={6}>
+              <Grid>
+                <FundooHeader />
+                <h2 className="headerStyle" >
+                  Create your Fundoo Account
+                </h2>
+              </Grid>
+              <Formik
+                initialValues={initialValuesSignUp}
+                validationSchema={validationSchemaSignUp}
+                onSubmit={onSubmitSignUP}
+              >
+                {(props) => (
+                  <Form >
+                    <Grid container spacing={2}>
+                      <Grid item sm={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth label="First Name" name="FirstName" variant="outlined" className="bottomMargin"
+                          helperText={<ErrorMessage name="FirstName" />}
+                        />
+                      </Grid>
+                      <Grid item sm={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth label="Last Name" name="LastName" variant="outlined" className="bottomMargin"
+                          helperText={<ErrorMessage name="LastName" />}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={0}>
+                      <Grid item sm={12}>
+                        <Field
+                          as={TextField}
+                          fullWidth label="Email"  name="email" variant="outlined" className="bottomMargin"
+                          helperText={<ErrorMessage name="email" />}
+                        />
+                        <Grid className="Text">
+                          You can use letters, numbers & periods
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={2}>
+                      <Grid item sm={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth variant="outlined" label="Password" name="Password" type="password"
+                          helperText={<ErrorMessage name="Password" />} className="bottomMargin"
+                        />
+                      </Grid>
+                      <Grid item sm={6}>
+                        <Field
+                          as={TextField}
+                          fullWidth variant="outlined" label="Confirm Password" name="ConfirmPassword" type="password"
+                          helperText={<ErrorMessage name="ConfirmPassword" />} className="bottomMargin"
+                        />
+                      </Grid>
+                      <Grid className="Text1">
+                        Use 8 or more characters with a mix of letters, numbers
+                        & symbols
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={0}>
+                      <Grid item sm={12}>
+                        <Button
+                           type="submit" variant="contained" color="primary" fullWidth
+                        >
+                          Sign Up
+                        </Button>    
+                      </Grid>
+                    </Grid>
+                  </Form>
+                )}
+              </Formik>
+              <p className="marginTop">Already have an account ? <Button href='/' color='primary' variant = 'text'>Login</Button></p>
+            </Grid>
+            <Grid item sm={6} md={6}>
+              <img
+                className="IMG"
+                src="https://ssl.gstatic.com/accounts/signup/glif/account.svg"
+                alt=""
+              />
+              <p className="imgContain">One account. All of Google Working for you</p>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+  );
+};
 export default SignUp;

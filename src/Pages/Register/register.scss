@@ -1,44 +1,56 @@
-.paperStyle {
-  padding: 20px;
-  height: 70vh;
-  width: 500px;
-  margin: 70px auto;
-}
-.textStyle {
-  width: 25vh;
-  padding-right: 15vh;
+.headerStyle {
+  font-family: "Prompt", sans-serif;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-.textField {
-  width: 52vh;
-  margin-top: 20px;
-  padding: 20vh;
+.marginTop {
+  font-family: "Prompt", sans-serif;
+  margin-top: 10px !important;
 }
 
-.head {
-  color: orange;
+.bottomMargin {
+  padding-bottom: 10px !important;
 }
 
-.button {
-  width: 52vh;
-  padding-top: 4vh;
-}
-.box {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
-  padding-top: 5vh;
+.paperStyleSignUP {
+  padding: 20px 20px 30px 30px;
+  margin: 20px auto;
+  border-radius: 10px !important;
+  width: auto;
+  max-width: 690px;
+  min-width: 100px;
 }
 
-.name {
-  display: flex;
-  flex-flow: row wrap;
+.IMG {
+  margin-top: 100px;
+  width: 70%;
+  margin-left: 50px;
 }
 
-.register-avatar {
-  position: relative;
-  width: 300px;
-  height: 200%;
-  left: 35vh;
-  bottom: 50vh;
+.imgContain {
+  font-family: "Prompt", sans-serif;
+  margin-left: 45px;
+  margin-top: -10px;
+}
+
+.Text {
+  font-family: "Prompt", sans-serif;
+  margin-left: 10px;
+  color: #5f6368;
+  margin-top: -12px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.Text1 {
+  font-family: "Prompt", sans-serif;
+  margin-left: 18px;
+  color: #5f6368;
+  margin-top: -18px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 400;
 }
