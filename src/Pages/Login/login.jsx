@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Paper, TextField, Button, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import FundooHeader from '../../Components/FundooHeader';
 import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import * as Yup from 'yup';
@@ -26,7 +26,7 @@ const Login = () => {
         <Paper elevation={12} className="paperstyle">
           <Grid align="center">
             <FundooHeader/>
-            <h2 className="header">Sign In</h2>
+            <h2 className="header" data-testid="signIn">Sign In</h2>
           </Grid>
           <Formik
             initialValues={initialValues}
@@ -34,30 +34,29 @@ const Login = () => {
             onSubmit={onSubmits}
           >
             {(props) => (
-              <Form >
+              <Form  data-testid="form">
                 <Field
-                  as={TextField} label="Email" name="email" variant="outlined" fullWidth
+                  as={TextField}className="formclass" data-testid="email" label="Email" name="email" variant="outlined" fullWidth
                   helperText={<ErrorMessage name="email" />}
                 />
                 <Field
-                  as={TextField} label="Password"  name="Password" variant="outlined" type="password"fullWidth
+                  as={TextField}className="formclass" data-testid="password" label="Password"  name="Password" variant="outlined" type="password"fullWidth
                   helperText={<ErrorMessage name="Password" />}
                 />
                 <Button
-                  type="submit"color="primary"variant="contained"className="buttonStyle"fullWidth>
+                  id="submit" type="submit"color="primary"variant="contained"className="buttonStyle"fullWidth>
                  Sign In
                 </Button>
               </Form>
             )}
           </Formik>
-          <Typography >
-            <Link to="">Forgot password</Link>
+          <Typography >          
+            <Button href=''  color='primary' variant = 'text'>Forgot password</Button>
           </Typography>
-          <Typography>
-            Create a new account ? 
-            <Link to="/register">
-              <span > Create account </span>
-            </Link>
+          <Typography>  
+              <span className="marginTop"><Button className="next"href='/register'  color='primary' variant = 'text'>Create account</Button>
+              <Button  href='/' color='primary' variant = 'contained'>Next</Button>
+              </span>
           </Typography>
         </Paper>
       </Grid>

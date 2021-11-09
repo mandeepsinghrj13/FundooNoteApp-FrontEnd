@@ -3,7 +3,7 @@ body {
 }
 .paperstyle {
   padding: 30px;
-  height: 60vh;
+  height: 70vh;
   width: 310px;
   margin: 70px auto;
 }
@@ -16,6 +16,15 @@ body {
 .MuiFormHelperText-root {
   color: red !important;
 }
+.MuiFormControl-root {
+  margin: 6px !important;
+}
 .header {
   font-family: "Prompt", sans-serif;
+}
+.MuiButton-root {
+  margin: 6px !important;
+}
+.MuiButton-text {
+  padding: 0 px 0 px !important;
 }
