@@ -1,26 +1,40 @@
 import React from "react";
-import { Grid, Paper, TextField, Button, Typography } from "@material-ui/core";
+import { Grid, Paper, TextField, Button,Typography } from "@material-ui/core";
 import {BrowserRouter as Router } from "react-router-dom";
 import FundooHeader from '../../Components/FundooHeader';
 import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import * as Yup from 'yup';
 import '../Login/login.scss';
+import { UserNode } from "../../Services/user";
+import {toast, ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+const userNode = new UserNode ()
 const Login = () => {
   const initialValues = {
     email: "",
     Password: "",
   };
 
-  const onSubmits = (values, props) => {
-    console.log(values);
-    props.resetForm()
-  };
-
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid Email address").required("Email Required"),
     Password: Yup.string().required("Password Required"),
   });
-
+  const onSubmits = (values, props) => {
+    console.log(values);
+    props.resetForm()
+    const userCredentials = {
+      email: values.email,
+      Password: values.Password
+    };
+    userNode.login(userCredentials)
+       .then((res) => {
+         localStorage.setItem('token', res.data.token);
+         toast.success("Login Successfull");
+      }).catch((error) => {
+        toast.error(error.message);
+      });
+  };
+  
   return ( 
     <Router>
       <Grid className="display-center">
@@ -59,11 +73,11 @@ const Login = () => {
               <Button  href='/' color='primary' variant = 'contained'>Next</Button>
               </span>
           </Typography>
+          
         </Paper>
       </Grid>
-      </Router>
+      <ToastContainer />
+      </Router>    
   );
 };
-
 export default Login;
-

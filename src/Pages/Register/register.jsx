@@ -2,26 +2,26 @@ import React from 'react'
 import { Grid, Paper, TextField, Button } from '@material-ui/core'
 import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import FundooHeader from "../../Components/FundooHeader";
+import { UserNode } from "../../Services/user";
+import {toast, ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router";
 import "../Register/register.scss";
 import * as Yup from "yup";
+const userNode = new UserNode();
 const SignUp = () => {
+  const history = useHistory();
   const initialValuesSignUp = {
-    FirstName: "",
-    LastName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     Password: "",
     ConfirmPassword: "",
   };
-
-  const onSubmitSignUP = (values, props) => {
-    console.log(values);  
-    props.resetForm()
-  };
-
-  const validationSchemaSignUp = Yup.object().shape({
-    FirstName: Yup.string()   
+ const validationSchemaSignUp = Yup.object().shape({
+    firstName: Yup.string()   
       .required(" FirstName Required"),
-    LastName: Yup.string()  
+    lastName: Yup.string()  
       .required("LastName Required"),
     email: Yup.string()
       .email("Enter valid Email")
@@ -32,6 +32,30 @@ const SignUp = () => {
       .oneOf([Yup.ref("Password")], "Password not matched")
       .required("ConfirmPassword Required"),
   });
+
+  const onSubmitSignUP = (values, props) => {
+    console.log(values);  
+    props.resetForm()
+    const userDetails = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      Password: values.Password,
+     
+    };
+    userNode
+      .register(userDetails)
+      .then((res) => {
+        setTimeout(()=>{
+          history.push("/login");
+        },5000);
+        toast.success("register successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
 
   return (   
       <Grid className="display-center">
@@ -55,15 +79,15 @@ const SignUp = () => {
                       <Grid item sm={6}>
                         <Field
                           as={TextField}
-                          fullWidth label="First Name" name="FirstName" variant="outlined" data-testid="FirstNameSignUp" className="bottomMargin"
-                          helperText={<ErrorMessage name="FirstName" />}
+                          fullWidth label="First Name" name="firstName" variant="outlined" data-testid="FirstNameSignUp" className="bottomMargin"
+                          helperText={<ErrorMessage name="firstName" />}
                         />
                       </Grid>
                       <Grid item sm={6}>
                         <Field
                           as={TextField}
-                          fullWidth label="Last Name" name="LastName" variant="outlined" data-testid="LastNameSignUp" className="bottomMargin"
-                          helperText={<ErrorMessage name="LastName" />}
+                          fullWidth label="Last Name" name="lastName" variant="outlined" data-testid="LastNameSignUp" className="bottomMargin"
+                          helperText={<ErrorMessage name="lastName" />}
                         />
                       </Grid>
                     </Grid>
@@ -123,6 +147,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </Paper>
+        <ToastContainer />
       </Grid>
   );
 };
