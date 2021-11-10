@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Paper, TextField, Button, Typography } from "@material-ui/core";
-//import { Link } from "react-router-dom";
+import {BrowserRouter as Router } from "react-router-dom";
 import FundooHeader from '../../Components/FundooHeader';
 import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import * as Yup from 'yup';
@@ -17,11 +17,12 @@ const Login = () => {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid Email address").required("Required"),
-    Password: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid Email address").required("Email Required"),
+    Password: Yup.string().required("Password Required"),
   });
 
   return ( 
+    <Router>
       <Grid className="display-center">
         <Paper elevation={12} className="paperstyle">
           <Grid align="center">
@@ -44,7 +45,7 @@ const Login = () => {
                   helperText={<ErrorMessage name="Password" />}
                 />
                 <Button
-                  id="submit" type="submit"color="primary"variant="contained"className="buttonStyle"fullWidth>
+                  data-testid="submit" type="submit"color="primary"variant="contained"className="buttonStyle"fullWidth>
                  Sign In
                 </Button>
               </Form>
@@ -60,6 +61,7 @@ const Login = () => {
           </Typography>
         </Paper>
       </Grid>
+      </Router>
   );
 };
 
