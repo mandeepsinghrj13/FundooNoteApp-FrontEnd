@@ -34,22 +34,14 @@ const SignUp = () => {
   });
 
   const onSubmitSignUP = (values, props) => {
-    console.log(values);  
-    props.resetForm()
-    const userDetails = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-      Password: values.Password,
-     
-    };
     userNode
-      .register(userDetails)
+      .register(values)
       .then((res) => {
+        props.resetForm()
         setTimeout(()=>{
           history.push("/login");
-        },5000);
-        toast.success("register successfully");
+        },4000);
+        toast.success("register successfully verify your email");
       })
       .catch((error) => {
         console.log(error);
@@ -135,7 +127,7 @@ const SignUp = () => {
                   </Form>
                 )}
               </Formik>
-              <p className="marginTop">Already have an account ? <Button href='/' color='primary' variant = 'text'>Login</Button></p>
+              <p className="marginTop">Already have an account ? <Button to='/' color='primary' variant = 'text'>Login</Button></p>
             </Grid>
             <Grid item sm={6} md={6}>
               <img

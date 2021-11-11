@@ -19,22 +19,17 @@ const Login = () => {
     email: Yup.string().email("Invalid Email address").required("Email Required"),
     Password: Yup.string().required("Password Required"),
   });
-  const onSubmits = (values, props) => {
-    console.log(values);
-    props.resetForm()
-    const userCredentials = {
-      email: values.email,
-      Password: values.Password
-    };
-    userNode.login(userCredentials)
+  const onSubmits = (values, props) => { 
+    userNode.login(values)
        .then((res) => {
+         props.resetForm()
          localStorage.setItem('token', res.data.token);
          toast.success("Login Successfull");
       }).catch((error) => {
         toast.error(error.message);
       });
   };
-  
+
   return ( 
     <Router>
       <Grid className="display-center">
@@ -58,21 +53,20 @@ const Login = () => {
                   as={TextField}className="formclass" data-testid="password" label="Password"  name="Password" variant="outlined" type="password"fullWidth
                   helperText={<ErrorMessage name="Password" />}
                 />
+                <div className="buttonConteners">
+                <Button className="next" type="button" to="/register" color='primary' variant = 'text'>Create account</Button>
                 <Button
-                  data-testid="submit" type="submit"color="primary"variant="contained"className="buttonStyle"fullWidth>
+                  data-testid="submit" type="submit" color="primary" variant="contained" className="buttonStyle" fullWidth>
                  Sign In
                 </Button>
+                </div>
               </Form>
             )}
           </Formik>
           <Typography >          
             <Button href=''  color='primary' variant = 'text'>Forgot password</Button>
           </Typography>
-          <Typography>  
-              <span className="marginTop"><Button className="next"href='/register'  color='primary' variant = 'text'>Create account</Button>
-              <Button  href='/' color='primary' variant = 'contained'>Next</Button>
-              </span>
-          </Typography>
+          
           
         </Paper>
       </Grid>

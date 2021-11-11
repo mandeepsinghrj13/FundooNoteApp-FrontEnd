@@ -3,7 +3,7 @@ body {
 }
 .paperstyle {
   padding: 30px;
-  height: 70vh;
+  height: 65vh;
   width: 310px;
   margin: 70px auto;
 }
@@ -26,5 +26,14 @@ body {
   margin: 6px !important;
 }
 .MuiButton-text {
-  padding: 0 px 0 px !important;
+  padding: 6px 0px !important;
+}
+// todo rename button
+.buttonConteners {
+  display: flex;
+  width: 103%;
+  justify-content: space-between;
+}
+.MuiButton-fullWidth {
+  width: 120px !important;
 }
