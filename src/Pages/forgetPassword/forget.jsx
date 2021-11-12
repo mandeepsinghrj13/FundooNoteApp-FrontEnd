@@ -7,7 +7,7 @@ import FundooHeader from '../../Components/FundooHeader';
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { forgot } from "../../Services/user.js";
+import { forget } from "../../Services/NoteServices.js";
 
 const ForgotPassword = () => {
   const initialValues = {
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const history = useHistory();
 
   const onSubmits = (values, props) => {
-    forgot(values)
+    forget(values)
       .then((res) => {
         setTimeout(() => {
           props.resetForm();
@@ -44,8 +44,8 @@ const ForgotPassword = () => {
       <Paper elevation={8} className="paperStyleFP">
         <Grid align="center">
           <FundooHeader />
-          <h3 className="fontDesign">Find your email</h3>
-          <h4 className="fontDesign">Enter your recovery email</h4>
+          <h3 className="fontDesign" data-testid="header1">Find your email</h3>
+          <h4 className="fontDesign" data-testid="header2">Enter your recovery email</h4>
         </Grid>
         <Formik
           initialValues={initialValues}
@@ -53,11 +53,11 @@ const ForgotPassword = () => {
           onSubmit={onSubmits}
         >
           {(props) => (
-            <Form>
+            <Form data-testid="form">
               <Field
-                as={TextField}  label="Email"  name="email"  variant="outlined"  fullWidth className="tfStyle"  helperText={<ErrorMessage name="email" />}
+                as={TextField} data-testid="email" label="Email"  name="email"  variant="outlined"  fullWidth className="tfStyle"  helperText={<ErrorMessage name="email" />}
               />
-              <Grid container className="buttonStyle1" sm={12}>
+              <Grid container className="buttonStyle1" >
                 <Button  type="submit"  color="primary"  variant="contained"  fullWidth>  Next</Button>
               </Grid>
             </Form>
