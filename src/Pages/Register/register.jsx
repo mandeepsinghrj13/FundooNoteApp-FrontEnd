@@ -127,7 +127,7 @@ const SignUp = () => {
                   </Form>
                 )}
               </Formik>
-              <p className="marginTop">Already have an account ? <Button to='/' color='primary' variant = 'text'>Login</Button></p>
+              <p className="marginTop">Already have an account ? <Button href='/' color='primary' variant = 'text'>Login</Button></p>
             </Grid>
             <Grid item sm={6} md={6}>
               <img

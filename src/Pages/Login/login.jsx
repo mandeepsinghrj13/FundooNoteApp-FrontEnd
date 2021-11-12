@@ -54,7 +54,8 @@ const Login = () => {
                   helperText={<ErrorMessage name="Password" />}
                 />
                 <div className="buttonConteners">
-                <Button className="next" type="button" to="/register" color='primary' variant = 'text'>Create account</Button>
+                <Button className="next" type="button" href="/register" color='primary' variant = 'text'>Create account</Button>
+                
                 <Button
                   data-testid="submit" type="submit" color="primary" variant="contained" className="buttonStyle" fullWidth>
                  Sign In
@@ -64,7 +65,7 @@ const Login = () => {
             )}
           </Formik>
           <Typography >          
-            <Button href=''  color='primary' variant = 'text'>Forgot password</Button>
+            <Button href='/forgetPassword'  color='primary' variant = 'text'>Forgot password</Button>
           </Typography>
           
           

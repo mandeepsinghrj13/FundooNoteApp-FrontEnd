@@ -1,0 +1,36 @@
+.paperStyleFP {
+  padding: 10px 20px 80px 20px;
+  margin: 70px auto;
+  border-radius: 10px !important;
+  width: 350px;
+  min-width: 100px;
+  height: 50vh;
+}
+
+.fontDesign {
+  font-weight: 400;
+  font-family: "Prompt", sans-serif;
+}
+
+.buttonStyle1 {
+  margin: 15px 0px !important;
+  width: 100px !important;
+  float: right;
+}
+
+.MuiButton-fullWidth {
+  padding: 9px 33px 9px !important;
+}
+
+.textDecoration:hover {
+  color: blue;
+}
+
+.buttonFooter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 7%;
+  justify-content: space-between;
+  align-items: center;
+}
