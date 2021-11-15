@@ -6,6 +6,9 @@ import Login from "./Pages/Login/login.jsx";
 import Register from "./Pages/Register/register.jsx";
 import FrogetPassword from "./Pages/forgetPassword/forget.jsx";
 
+import Dashboard from "./Pages/dashboard/dashboard";
+import ProtectedRoute from "../src/Components/protectedRouter";
+
 function App() {
   return (
     <Router>
@@ -15,6 +18,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/forgetPassword" component={FrogetPassword} />
+
+          <ProtectedRoute path="/dashboard" component={Dashboard}></ProtectedRoute>
         </Switch>
       </div>
     </Router>

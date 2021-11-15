@@ -5,11 +5,13 @@ import FundooHeader from '../../Components/FundooHeader';
 import { ErrorMessage ,Formik, Field, Form} from 'formik';
 import * as Yup from 'yup';
 import '../Login/login.scss';
+import { useHistory } from 'react-router-dom';
 import { UserNode } from "../../Services/user";
 import {toast, ToastContainer} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 const userNode = new UserNode ()
 const Login = () => {
+  const history = useHistory(); 
   const initialValues = {
     email: "",
     Password: "",
@@ -21,14 +23,16 @@ const Login = () => {
   });
   const onSubmits = (values, props) => { 
     userNode.login(values)
-       .then((res) => {
-         props.resetForm()
-         localStorage.setItem('token', res.data.token);
-         toast.success("Login Successfull");
-      }).catch((error) => {
-        toast.error(error.message);
-      });
-  };
+    .then((res) => {
+      localStorage.setItem('token', res.data.token);
+      setTimeout(() => {
+       history.push('/dashboard');
+     }, 3000);
+      toast.success("Login Successfull");
+   }).catch((error) => {
+     toast.error("Please enter valid email & password");
+   });
+ }
 
   return ( 
     <Router>

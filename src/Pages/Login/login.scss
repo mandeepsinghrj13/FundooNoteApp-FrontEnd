@@ -22,17 +22,16 @@ body {
 .header {
   font-family: "Prompt", sans-serif;
 }
-.MuiButton-root {
-  margin: 6px !important;
-}
 .MuiButton-text {
-  padding: 6px 0px !important;
+  padding: 10px 0px !important;
 }
 // todo rename button
 .buttonConteners {
   display: flex;
   width: 103%;
   justify-content: space-between;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 .MuiButton-fullWidth {
   width: 132px !important;
