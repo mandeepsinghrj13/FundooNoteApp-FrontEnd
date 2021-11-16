@@ -20,7 +20,7 @@ const ForgotPassword = () => {
       .then((res) => {
         setTimeout(() => {
           props.resetForm();
-          history.push("#");
+          history.push("../resetPassword");
         }, 2000);
         toast.success("email link sent succesfully ", {
           autoClose: 2000,
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Please Enter valid email")
-      .required("email required"),
+      .required("Email Required"),
   });
   return (
     <Grid className="display-center">
@@ -55,7 +55,7 @@ const ForgotPassword = () => {
           {(props) => (
             <Form data-testid="form">
               <Field
-                as={TextField} data-testid="email" label="Email"  name="email"  variant="outlined"  fullWidth className="tfStyle"  helperText={<ErrorMessage name="email" />}
+                as={TextField}  data-testid="email" label="Email"  name="email"  variant="outlined"  fullWidth className="tfStyle"  helperText={<ErrorMessage name="email" />}
               />
               <Grid container className="buttonStyle1" >
                 <Button  type="submit"  color="primary"  variant="contained"  fullWidth>  Next</Button>
