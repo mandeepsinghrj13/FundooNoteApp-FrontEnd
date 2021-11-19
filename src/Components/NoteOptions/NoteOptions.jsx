@@ -5,15 +5,13 @@ import AddAlertIcon from "@material-ui/icons/AddAlertOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
 import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
-import SystemUpdateAltOutlinedIcon from "@material-ui/icons/SystemUpdateAltOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
-import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
-import RestoreFromTrashRoundedIcon from "@material-ui/icons/RestoreFromTrashRounded";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
-import Services from "../../Services/NoteServices.js";
+import Services from "../../Services/NoteServices";
 import "./NoteOptions.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,33 +22,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     padding: "6px",
   },
-  colorMenu: {
-    width: "130px",
-    height: "90px",
-    display: "flex",
-    flexFlow: " column wrap",
-  },
-  colorButton: {
-    margin: "2px",
-    width: "5px",
-    height: "5px",
-    "&:hover": {
-      border: "black 2px solid",
-    },
-  },
-
-  paper: {
-    marginRight: theme.spacing(2),
-  },
 }));
 
 export default function NoteOptions(props) {
   const classes = useStyles();
-  const [open] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [noteId] = React.useState(props.editId);
-  const [archive] = React.useState(props.archive);
   const [trash] = React.useState(props.trash);
 
 
@@ -66,10 +43,8 @@ export default function NoteOptions(props) {
 
   const deleted = () => {
     let data = {
-      notesId: [noteId],
+      id: [noteId],
     };
-    console.log("dlt", data);
-    console.log("dlted", noteId);
     Services.deleteForever(data)
       .then((data) => {
         console.log("Note deleted " + data);
@@ -81,16 +56,6 @@ export default function NoteOptions(props) {
   };
 
 
-  const archiveNote = () => {};
-
-  const restore = () => {};
-
-  const unArchiveNote = () => {};
-
-  const ColorBlock = () => {
-
-  };
-
   return (
     <div className={classes.optionButton}>
       <div>
@@ -98,7 +63,7 @@ export default function NoteOptions(props) {
           <div>
             
             <IconButton className={classes.button}>
-              <RestoreFromTrashRoundedIcon onClick={restore} />
+              <DeleteForeverRoundedIcon onClick={deleted} />
             </IconButton>
           </div>
         ) : (
@@ -109,40 +74,17 @@ export default function NoteOptions(props) {
             <IconButton className={classes.button}>
               <PersonAddIcon />
             </IconButton>
-            <IconButton
-              className={classes.button}
-            >
+            <IconButton className={classes.button}>
               <ColorLensOutlinedIcon />
             </IconButton>
             <IconButton className={classes.button}>
               <ImageOutlinedIcon />
-            </IconButton>
-            <IconButton className={classes.button}>
-              {archive ? (
-                <PublishRoundedIcon onClick={unArchiveNote} />
-              ) : (
-                <SystemUpdateAltOutlinedIcon onClick={archiveNote} />
-              )}
             </IconButton>
             <IconButton className={classes.button} onClick={deleteHandleOpen}>
               <MoreVertOutlinedIcon />
             </IconButton>
           </div>
         )}
-      </div>
-      <div
-        className={classes.colorWindow}
-        style={{ display: open ? "block" : "none" }}
-      >
-        <Paper open={Boolean(open)}>
-          <Menu
-            open={Boolean(open)}
-            className={classes.colorPaper}
-            anchorEl={anchorEl}
-          >
-            <ColorBlock className="colorBlock" />
-          </Menu>
-        </Paper>
       </div>
       <div>
         <Paper>
@@ -158,4 +100,4 @@ export default function NoteOptions(props) {
       </div>
     </div>
   );
-} 
+}

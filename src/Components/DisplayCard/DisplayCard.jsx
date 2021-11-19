@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import NoteOptions from "../../Components/NoteOptions/NoteOptions";
@@ -18,10 +19,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
   },
-  noteText: {
-    wordWrap: "break-word",
-    margin: "4px 4px 4px 4px",
-  },
+   noteText: {
+       margin: "4px",
+   },
 }));
 
 export default function DisplayNotes(props) {
@@ -71,7 +71,7 @@ export default function DisplayNotes(props) {
               style={{ backgroundColor: data.color }}
             >
               <div className="inputBlock" onClick={(e) => dialogOpen(e, data)}>
-                <Typography className={classes.noteText}>
+                <Typography className="noteTexts" className={classes.noteText}>
                   {data.title}
                 </Typography>
                 <Typography className={classes.noteText}>

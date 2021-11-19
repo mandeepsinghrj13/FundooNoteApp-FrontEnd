@@ -21,6 +21,13 @@ class UserNoteServices {
       headers: { Authorization: `Bearer ${token}` },
     });
   };
+  static deleteForever = (data) => {
+    const token = localStorage.getItem("token");
+    console.log("deleteToken ::", token);
+    return Axios.delete(`http://localhost:8000/deletenote/${data.id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  };
 }
 
 export default UserNoteServices;

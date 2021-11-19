@@ -2,10 +2,7 @@
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles } from "@material-ui/core/styles";
-//import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
-//import BrushOutlinedIcon from "@material-ui/icons/BrushOutlined";
 import IconButton from "@material-ui/core/IconButton";
-//import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import NoteOptions from "../NoteOptions/NoteOptions";
 import Services from "../../Services/NoteServices";
 import { toast, ToastContainer } from "react-toastify";
@@ -13,20 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 import "./addNotes.scss";
 
 const useStyles = makeStyles((theme) => ({
-  titleInput: {
-    padding: "10px 15px",
-    width: "100%",
-  },
-  noteInput: {
-    padding: "10px 15px",
-  },
   closeNotes: {
     padding: "10px",
     fontSize: "17px",
     justifySelf: "flex-end",
     fontFamily: "Google Sans ,Roboto,Arial,sans-serif",
     borderRadius: "5px",
-    cursor: "pointer",
   },
 }));
 
@@ -54,7 +43,6 @@ export default function AddNote(props) {
     Services.addNote(formval)
       .then((data) => {
         toast.success("Notes created");
-        //console.log("Add Notes: " + data);
         props.getall();        
       })
       .catch((err) => {
@@ -63,7 +51,6 @@ export default function AddNote(props) {
 
 
     if (title === undefined && note === undefined) {
-      //console.log("Please Enter Data");
       setClr("#fafafa");
       titleDisplay(false);
       return null;
@@ -81,9 +68,8 @@ export default function AddNote(props) {
           className="addNoteField"
           style={{ display: showTitle ? "block" : "none" }}
         >
-          <div className="titleInput" className={classes.titleInput}>
+          <div className="titleInput" >
             <InputBase
-              className={classes.input}
               placeholder="Title"
               value={title}
               fullWidth
@@ -94,7 +80,6 @@ export default function AddNote(props) {
         <div class="simpleNoteShow">
           <div className="noteInput">
             <InputBase
-              className={classes.input}
               placeholder="Take a notes"
               value={note}
               fullWidth

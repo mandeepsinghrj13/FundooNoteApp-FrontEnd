@@ -12,10 +12,14 @@
   padding: 7px 15px 0px 15px;
   width: 100%;
 }
+.titleInput {
+  padding: 7px 10px 7px 10px;
+  width: 100%;
+}
 .noteInput {
   display: flex;
   align-items: center;
-  padding: 7px 15px 7px 15px;
+  padding: 7px 10px 7px 10px;
 }
 
 .simpleNoteShow {
@@ -31,9 +35,9 @@
   align-items: center;
 }
 .closeNotes {
-  padding: 10px 10px 10px 10px;
-  font-size: 10px;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  padding: 10px;
+  font-size: 17px;
+  font-family: "Prompt", sans-serif;
 }
 .closeNotes:hover {
   border-radius: 5px;
