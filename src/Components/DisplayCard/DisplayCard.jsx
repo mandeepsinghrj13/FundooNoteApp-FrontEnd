@@ -1,31 +1,14 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import NoteOptions from "../../Components/NoteOptions/NoteOptions";
 import Dialog from "@material-ui/core/Dialog";
 import AddNote from "../../Components/createNote/addNotes";
 import Typography from "@material-ui/core/Typography";
 import "./DisplayCard.scss";
 
-const useStyles = makeStyles((theme) => ({
-  dialogBox: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  dialogOptions: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "flex-start",
-  },
-   noteText: {
-       margin: "4px",
-   },
-}));
+
 
 export default function DisplayNotes(props) {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   var [title, setTitle] = React.useState("");
@@ -71,10 +54,10 @@ export default function DisplayNotes(props) {
               style={{ backgroundColor: data.color }}
             >
               <div className="inputBlock" onClick={(e) => dialogOpen(e, data)}>
-                <Typography className="noteTexts" className={classes.noteText}>
+                <Typography className="noteText" >
                   {data.title}
                 </Typography>
-                <Typography className={classes.noteText}>
+                <Typography className="noteText">
                   {data.description}
                 </Typography>
               </div>
@@ -117,7 +100,7 @@ export default function DisplayNotes(props) {
             editTitle={title}
             editDisc={note}
             editColor={clr}
-            className={classes.dialogBox}
+            className="dialogBox"
           />
         </Dialog>
       </div>

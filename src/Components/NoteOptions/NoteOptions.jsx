@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+//import { makeStyles } from "@material-ui/core/styles";
 import AddAlertIcon from "@material-ui/icons/AddAlertOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,18 +14,9 @@ import Paper from "@material-ui/core/Paper";
 import Services from "../../Services/NoteServices";
 import "./NoteOptions.scss";
 
-const useStyles = makeStyles((theme) => ({
-  optionButton: {
-    width: "100%",
-  },
 
-  button: {
-    padding: "6px",
-  },
-}));
 
 export default function NoteOptions(props) {
-  const classes = useStyles();
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [noteId] = React.useState(props.editId);
   const [trash] = React.useState(props.trash);
@@ -57,30 +48,30 @@ export default function NoteOptions(props) {
 
 
   return (
-    <div className={classes.optionButton}>
+    <div className="optionButton">
       <div>
         {trash ? (
           <div>
             
-            <IconButton className={classes.button}>
+            <IconButton className="button">
               <DeleteForeverRoundedIcon onClick={deleted} />
             </IconButton>
           </div>
         ) : (
           <div className="optionfield">
-            <IconButton className={classes.button}>
+            <IconButton className="button">
               <AddAlertIcon />
             </IconButton>
-            <IconButton className={classes.button}>
+            <IconButton className="button">
               <PersonAddIcon />
             </IconButton>
-            <IconButton className={classes.button}>
+            <IconButton className="button">
               <ColorLensOutlinedIcon />
             </IconButton>
-            <IconButton className={classes.button}>
+            <IconButton className="button">
               <ImageOutlinedIcon />
             </IconButton>
-            <IconButton className={classes.button} onClick={deleteHandleOpen}>
+            <IconButton className="button" onClick={deleteHandleOpen}>
               <MoreVertOutlinedIcon />
             </IconButton>
           </div>
@@ -89,7 +80,7 @@ export default function NoteOptions(props) {
       <div>
         <Paper>
           <Menu
-            className={classes.settingMenu}
+            //className={classes.settingMenu}
             anchorEl={anchorE2}
             open={Boolean(anchorE2)}
             onClose={deletesHandleClose}

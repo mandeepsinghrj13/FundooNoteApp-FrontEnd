@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
-import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import NoteOptions from "../NoteOptions/NoteOptions";
 import Services from "../../Services/NoteServices";
@@ -9,18 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./addNotes.scss";
 
-const useStyles = makeStyles((theme) => ({
-  closeNotes: {
-    padding: "10px",
-    fontSize: "17px",
-    justifySelf: "flex-end",
-    fontFamily: "Google Sans ,Roboto,Arial,sans-serif",
-    borderRadius: "5px",
-  },
-}));
 
 export default function AddNote(props) {
-  const classes = useStyles();
   var [showTitle, titleDisplay] = React.useState(props.editOpen);
   var [title, setTitle] = React.useState(props.editTitle);
   var [note, setNote] = React.useState(props.editDisc);
@@ -109,7 +98,7 @@ export default function AddNote(props) {
           ) : (
             <div className="closeNotes">
               
-              <IconButton className={classes.closeNotes} onClick={closeNote}>
+              <IconButton className="closeNotes" onClick={closeNote}>
                 Add
               </IconButton>
             </div>
