@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-//import { makeStyles } from "@material-ui/core/styles";
 import AddAlertIcon from "@material-ui/icons/AddAlertOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import Menu from "@material-ui/core/Menu";
@@ -20,7 +20,6 @@ export default function NoteOptions(props) {
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [noteId] = React.useState(props.editId);
   const [trash] = React.useState(props.trash);
-
 
 
   const deleteHandleOpen = (event) => {
@@ -38,7 +37,7 @@ export default function NoteOptions(props) {
     };
     Services.deleteForever(data)
       .then((data) => {
-        console.log("Note deleted " + data);
+        toast.success("Note Deleted");
         props.getall();
       })
       .catch((err) => {
@@ -51,12 +50,7 @@ export default function NoteOptions(props) {
     <div className="optionButton">
       <div>
         {trash ? (
-          <div>
-            
-            <IconButton className="button">
-              <DeleteForeverRoundedIcon onClick={deleted} />
-            </IconButton>
-          </div>
+          <div>   </div>
         ) : (
           <div className="optionfield">
             <IconButton className="button">
@@ -80,7 +74,6 @@ export default function NoteOptions(props) {
       <div>
         <Paper>
           <Menu
-            //className={classes.settingMenu}
             anchorEl={anchorE2}
             open={Boolean(anchorE2)}
             onClose={deletesHandleClose}
@@ -88,6 +81,7 @@ export default function NoteOptions(props) {
             <MenuItem onClick={deleted}>Delete</MenuItem>
           </Menu>
         </Paper>
+        <ToastContainer />
       </div>
     </div>
   );

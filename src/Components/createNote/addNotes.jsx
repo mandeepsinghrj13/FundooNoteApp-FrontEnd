@@ -8,7 +8,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./addNotes.scss";
 
-
 export default function AddNote(props) {
   var [showTitle, titleDisplay] = React.useState(props.editOpen);
   var [title, setTitle] = React.useState(props.editTitle);
@@ -18,38 +17,45 @@ export default function AddNote(props) {
   const [archive] = React.useState(props.archive);
   const [trash] = React.useState(props.trash);
   const [takeNote] = React.useState(true);
+  const [noteId] = React.useState(props.editId);
 
   const clickedNote = () => {
     titleDisplay(true);
   };
 
-  const closeNote = () => {
-    console.log("onclosedcalled");
+  const addNote = () => {
     const formval = {
       title: title,
       description: note,
+      id: [noteId]
     };
-    Services.addNote(formval)
-      .then((data) => {
-        toast.success("Notes created");
-        props.getall();        
-      })
-      .catch((err) => {
-        toast.error("Note not created");
-      });
-
-
-    if (title === undefined && note === undefined) {
-      setClr("#fafafa");
+    if (!edit) {
+      Services.addNote(formval)
+        .then((data) => {
+          toast.success("Notes created");
+          props.getall();
+        })
+        .catch((err) => {
+          toast.error("Note not created");
+        });
+    }
+    else {
+      Services.updateNotes(formval)
+        .then((data) => {
+          toast.success("Notes Update");
+          props.getall();
+        })
+        .catch((err) => {
+        });
       titleDisplay(false);
-      return null;
+      props.dialogOff();
     }
   };
 
   return (
     <div
       className="addNotesMain"
-      onClickAway={closeNote}
+      onClickAway={addNote}
       style={{ backgroundColor: clr }}
     >
       <div className="notesField" onClick={clickedNote}>
@@ -87,7 +93,7 @@ export default function AddNote(props) {
             setClr={setClr}
             setEdited={edit}
             getall={props.getall}
-            editId={props.editId}
+            editId={noteId}
             archive={archive}
             trash={trash}
             dialogOff={props.dialogOff}
@@ -97,14 +103,11 @@ export default function AddNote(props) {
             " "
           ) : (
             <div className="closeNotes">
-              
-              <IconButton className="closeNotes" onClick={closeNote}>
-                Add
-              </IconButton>
+              <IconButton className="closeNotes" onClick={addNote}> Add  </IconButton>
             </div>
           )}
         </div>
       </div>
     </div>
   );
-} 
+}

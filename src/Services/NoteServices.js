@@ -15,6 +15,13 @@ class UserNoteServices {
     });
   };
 
+  static updateNotes = (data) => {
+    const token = localStorage.getItem("token");
+    return Axios.put(`http://localhost:8000/updatenotes/${data.id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  };
+
   static getNotes = () => {
     const token = localStorage.getItem("token");
     return Axios.get("http://localhost:8000/getnotes", {
