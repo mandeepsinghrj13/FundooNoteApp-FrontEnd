@@ -9,15 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "./addNotes.scss";
 
 export default function AddNote(props) {
-  var [showTitle, titleDisplay] = React.useState(props.editOpen);
-  var [title, setTitle] = React.useState(props.editTitle);
-  var [note, setNote] = React.useState(props.editDisc);
+  const [showTitle, titleDisplay] = React.useState(props.editOpen);
+  const [title, setTitle] = React.useState(props.noteDetail?.title);
+  const [note, setNote] = React.useState(props.noteDetail?.description);
   const [edit] = React.useState(props.setEdited);
-  const [clr, setClr] = React.useState(props.editColor);
-  const [archive] = React.useState(props.archive);
   const [trash] = React.useState(props.trash);
-  const [takeNote] = React.useState(true);
-  const [noteId] = React.useState(props.editId);
 
   const clickedNote = () => {
     titleDisplay(true);
@@ -27,7 +23,7 @@ export default function AddNote(props) {
     const formval = {
       title: title,
       description: note,
-      id: [noteId]
+      id: [props.noteDetail?._id]
     };
     if (!edit) {
       Services.addNote(formval)
@@ -56,7 +52,6 @@ export default function AddNote(props) {
     <div
       className="addNotesMain"
       onClickAway={addNote}
-      style={{ backgroundColor: clr }}
     >
       <div className="notesField" onClick={clickedNote}>
         <div
@@ -90,14 +85,6 @@ export default function AddNote(props) {
       >
         <div className="addNoteOptions">
           <NoteOptions
-            setClr={setClr}
-            setEdited={edit}
-            getall={props.getall}
-            editId={noteId}
-            archive={archive}
-            trash={trash}
-            dialogOff={props.dialogOff}
-            takeNote={takeNote}
           />
           {trash ? (
             " "

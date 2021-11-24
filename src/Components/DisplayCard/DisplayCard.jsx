@@ -11,9 +11,8 @@ import "./DisplayCard.scss";
 export default function DisplayNotes(props) {
   const [open, setOpen] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
-  const [title, setTitle] = React.useState("");
-  const [note, setNote] = React.useState("");
-  const [noteId, setNoteId] = React.useState();
+
+  const [noteData, setNoteData] = React.useState({ title: '', note: '', noteId: '' });
 
   const setDelete = () => {
     dialogClose();
@@ -23,15 +22,13 @@ export default function DisplayNotes(props) {
   const dialogOpen = (e, data) => {
     e.stopPropagation();
     setEdit(true);
-    setTitle(data.title);
-    setNote(data.description);
-    setNoteId(data._id);
+    setNoteData(data);
     setOpen(true);
   };
 
   const storeOption = (e, data) => {
     e.stopPropagation();
-    setNoteId(data);
+    setNoteData(data);
   };
 
   const dialogClose = () => {
@@ -62,7 +59,7 @@ export default function DisplayNotes(props) {
               <div className="optionContainer">
                 <div
                   onMouseEnter={(e) => {
-                    storeOption(e, data._id);
+                    storeOption(e, data);
                   }}
                   onMouseOver={setEdit(true)}
                   className="noteOption"
@@ -71,6 +68,7 @@ export default function DisplayNotes(props) {
                     setDelete={setDelete}
                     editId={data._id}
                     setEdited={edit}
+                    noteDetail={noteData}
                     getall={props.getall}
                   />
                 </div>
@@ -93,9 +91,7 @@ export default function DisplayNotes(props) {
             dialogOff={dialogClose}
             getall={props.getall}
             editOpen={open}
-            editId={noteId}
-            editTitle={title}
-            editDisc={note}
+            noteDetail={noteData}
             className="dialogBox"
           />
         </Dialog>

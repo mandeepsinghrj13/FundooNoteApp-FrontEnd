@@ -3,6 +3,7 @@ import React from "react";
 import AddAlertIcon from "@material-ui/icons/AddAlertOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
 import IconButton from "@material-ui/core/IconButton";
+import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,7 +19,6 @@ import "./NoteOptions.scss";
 
 export default function NoteOptions(props) {
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const [noteId] = React.useState(props.editId);
   const [trash] = React.useState(props.trash);
 
 
@@ -33,7 +33,7 @@ export default function NoteOptions(props) {
 
   const deleted = () => {
     let data = {
-      id: [noteId],
+      id: [props.noteDetail?._id],
     };
     Services.deleteForever(data)
       .then((data) => {
@@ -64,6 +64,9 @@ export default function NoteOptions(props) {
             </IconButton>
             <IconButton className="button">
               <ImageOutlinedIcon />
+            </IconButton>
+            <IconButton className="button">
+              <ArchiveOutlinedIcon />
             </IconButton>
             <IconButton className="button" onClick={deleteHandleOpen}>
               <MoreVertOutlinedIcon />
