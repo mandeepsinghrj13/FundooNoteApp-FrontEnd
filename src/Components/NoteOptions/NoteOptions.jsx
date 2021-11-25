@@ -81,7 +81,8 @@ export default function NoteOptions(props) {
             open={Boolean(anchorE2)}
             onClose={deletesHandleClose}
           >
-            <MenuItem onClick={deleted}>Delete</MenuItem>
+            <MenuItem data-testid="submit" onClick={deleted}>Delete</MenuItem>
+            <MenuItem >addLabel</MenuItem>
           </Menu>
         </Paper>
         <ToastContainer />

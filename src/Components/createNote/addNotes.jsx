@@ -51,14 +51,14 @@ export default function AddNote(props) {
   return (
     <div
       className="addNotesMain"
-      onClickAway={addNote}
+    //onClickAway={addNote}
     >
       <div className="notesField" onClick={clickedNote}>
         <div
           className="addNoteField"
           style={{ display: showTitle ? "block" : "none" }}
         >
-          <div className="titleInput" >
+          <div className="titleInput" data-testid="title" >
             <InputBase
               placeholder="Title"
               value={title}
@@ -67,8 +67,8 @@ export default function AddNote(props) {
             />
           </div>
         </div>
-        <div class="simpleNoteShow">
-          <div className="noteInput">
+        <div className="simpleNoteShow">
+          <div className="noteInput" data-testid="description">
             <InputBase
               placeholder="Take a notes"
               value={note}
@@ -90,7 +90,7 @@ export default function AddNote(props) {
             " "
           ) : (
             <div className="closeNotes">
-              <IconButton className="closeNotes" onClick={addNote}> Add  </IconButton>
+              <IconButton className="closeNotes" data-testid="submit" onClick={addNote}> Add  </IconButton>
             </div>
           )}
         </div>

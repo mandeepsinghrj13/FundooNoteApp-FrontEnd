@@ -6,7 +6,7 @@ import "./Notes.scss";
 export default function Notes(props) {
   const [notes, setNotes] = React.useState([]);
 
-  console.log("get notes files called");
+  //console.log("get notes files called");
 
   const getAllNotes = () => {
     Services.getNotes()
@@ -14,7 +14,7 @@ export default function Notes(props) {
         const { data } = res.data;
         let notes = data.reverse();
         setNotes(notes);
-      
+
       })
       .catch((err) => {
         console.log("error = " + err);
@@ -26,7 +26,7 @@ export default function Notes(props) {
   }, []);
 
   return (
-    <div className="mainContent" data-testId="wrapper">
+    <div className="mainContent" >
       <AddNotes getall={getAllNotes} />
       <DisplayNotes notes={notes} getall={getAllNotes} />
       <div></div>
