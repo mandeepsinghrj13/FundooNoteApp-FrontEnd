@@ -59,10 +59,11 @@ export default function AddNote(props) {
           style={{ display: showTitle ? "block" : "none" }}
         >
           <div className="titleInput" data-testid="title" >
-            <InputBase
+            <InputBase className="titleName"
               placeholder="Title"
               value={title}
               fullWidth
+              multiline
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -75,6 +76,7 @@ export default function AddNote(props) {
               placeholder="Take a notes"
               value={note}
               fullWidth
+              multiline
               onChange={(e) => setNote(e.target.value)}
             />
           </div>

@@ -38,7 +38,7 @@
   display: none;
   cursor: pointer;
 }
-.noteBlock .noteOption {
+.noteBlock:hover .noteOption {
   display: block;
 }
 .displayText {
@@ -50,7 +50,9 @@
   flex-flow: wrap;
   align-items: flex-start;
 }
-
+.addnoteNone {
+  display: none;
+}
 @media only screen and (max-width: 615px) {
   .noteBlock {
     width: 100%;
