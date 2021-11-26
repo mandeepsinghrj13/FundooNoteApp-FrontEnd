@@ -49,7 +49,7 @@ export default function DisplayNotes(props) {
               style={{ backgroundColor: data.color }}
             >
               <div className="inputBlock" onClick={(e) => dialogOpen(e, data)}>
-                <Typography className="noteText" >
+                <Typography className="textTitle" >
                   {data.title}
                 </Typography>
                 <Typography className="noteText">

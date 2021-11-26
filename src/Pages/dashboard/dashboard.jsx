@@ -144,7 +144,7 @@ export default function Dashboard(props) {
   const drawerClose = () => {
     setOpen(false);
   };
-  
+
   const nextPath = (path) => {
     history.push(path);
   };
@@ -232,7 +232,7 @@ export default function Dashboard(props) {
   return (
     <div className="root" >
       <CssBaseline />
-      <AppBar position="fixed"  className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.topBar}>
           <span className="leftOptions">
             <div className="startOptions">
@@ -439,9 +439,9 @@ export default function Dashboard(props) {
                 <ListItem
                   button
                   className="drawerListButton"
-                   style={{
-                   backgroundColor: achive ? "#ffe0b2" : "transparent",
-                   }}
+                  style={{
+                    backgroundColor: achive ? "#ffe0b2" : "transparent",
+                  }}
                 >
                   <ListItemIcon>
                     <svg width="28" height="28" viewBox="0 0 24 24">

@@ -67,7 +67,9 @@ export default function AddNote(props) {
             />
           </div>
         </div>
-        <div className="simpleNoteShow">
+        <div className="simpleNoteShow"
+          style={{ display: setNote ? "block" : "none" }}
+        >
           <div className="noteInput" data-testid="description">
             <InputBase
               placeholder="Take a notes"
