@@ -11,10 +11,15 @@
 }
 .noteText {
   margin: 4px !important;
+  overflow: hidden;
 }
 .textTitle {
   margin: 4px !important;
   font-weight: bold !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .noteBlock {
   width: 300px;
@@ -49,12 +54,16 @@
   display: flex;
   flex-flow: wrap;
   align-items: flex-start;
+  //white-space: pre;
+  // display: grid;
+  // gap: 1rem;
+  // grid-template-columns: repeat(3, 1fr);
 }
 .addnoteNone {
   display: none;
 }
-@media only screen and (max-width: 615px) {
-  .noteBlock {
-    width: 100%;
-  }
-}
+// @media only screen and (max-width: 615px) {
+//   .noteBlock {
+//     width: 100%;
+//   }
+// }

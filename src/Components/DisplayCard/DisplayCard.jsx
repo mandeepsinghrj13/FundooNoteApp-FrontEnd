@@ -12,7 +12,7 @@ export default function DisplayNotes(props) {
   const [open, setOpen] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
 
-  const [noteData, setNoteData] = React.useState({ title: '', note: '', noteId: '' });
+  const [noteData, setNoteData] = React.useState({ title: '', description: '', noteId: '' });
 
   const setDelete = () => {
     dialogClose();

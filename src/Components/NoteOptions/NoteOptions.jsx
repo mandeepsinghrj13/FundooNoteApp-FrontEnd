@@ -19,8 +19,6 @@ import "./NoteOptions.scss";
 
 export default function NoteOptions(props) {
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const [trash] = React.useState(props.trash);
-
 
   const deleteHandleOpen = (event) => {
     setAnchorE2(event.currentTarget);
@@ -49,30 +47,27 @@ export default function NoteOptions(props) {
   return (
     <div className="optionButton">
       <div>
-        {trash ? (
-          <div>   </div>
-        ) : (
-          <div className="optionfield">
-            <IconButton className="button">
-              <AddAlertIcon />
-            </IconButton>
-            <IconButton className="button">
-              <PersonAddIcon />
-            </IconButton>
-            <IconButton className="button">
-              <ColorLensOutlinedIcon />
-            </IconButton>
-            <IconButton className="button">
-              <ImageOutlinedIcon />
-            </IconButton>
-            <IconButton className="button">
-              <ArchiveOutlinedIcon />
-            </IconButton>
-            <IconButton className="button" onClick={deleteHandleOpen}>
-              <MoreVertOutlinedIcon />
-            </IconButton>
-          </div>
-        )}
+
+        <div className="optionfield">
+          <IconButton className="button">
+            <AddAlertIcon />
+          </IconButton>
+          <IconButton className="button">
+            <PersonAddIcon />
+          </IconButton>
+          <IconButton className="button">
+            <ColorLensOutlinedIcon />
+          </IconButton>
+          <IconButton className="button">
+            <ImageOutlinedIcon />
+          </IconButton>
+          <IconButton className="button">
+            <ArchiveOutlinedIcon />
+          </IconButton>
+          <IconButton className="button" onClick={deleteHandleOpen}>
+            <MoreVertOutlinedIcon />
+          </IconButton>
+        </div>
       </div>
       <div>
         <Paper>
@@ -82,7 +77,6 @@ export default function NoteOptions(props) {
             onClose={deletesHandleClose}
           >
             <MenuItem data-testid="submit" onClick={deleted}>Delete</MenuItem>
-            <MenuItem >addLabel</MenuItem>
           </Menu>
         </Paper>
         <ToastContainer />

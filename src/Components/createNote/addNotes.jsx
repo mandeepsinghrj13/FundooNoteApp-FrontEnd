@@ -2,6 +2,7 @@
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
+//import { Button } from "@material-ui/core";
 import NoteOptions from "../NoteOptions/NoteOptions";
 import Services from "../../Services/NoteServices";
 import { toast, ToastContainer } from "react-toastify";
@@ -10,26 +11,29 @@ import "./addNotes.scss";
 
 export default function AddNote(props) {
   const [showTitle, titleDisplay] = React.useState(props.editOpen);
-  const [title, setTitle] = React.useState(props.noteDetail?.title);
-  const [note, setNote] = React.useState(props.noteDetail?.description);
+  const [noteData, setNoteData] = React.useState(props.noteDetail);
   const [edit] = React.useState(props.setEdited);
-  const [trash] = React.useState(props.trash);
 
   const clickedNote = () => {
     titleDisplay(true);
   };
 
+  const noteChangeHandler = (e, key) => {
+    setNoteData({ ...noteData, [key]: e.target.value });
+  }
+
   const addNote = () => {
     const formval = {
-      title: title,
-      description: note,
-      id: [props.noteDetail?._id]
+      title: noteData?.title,
+      description: noteData?.description,
+      id: [noteData?._id]
     };
     if (!edit) {
       Services.addNote(formval)
         .then((data) => {
           toast.success("Notes created");
           props.getall();
+          window.location.reload();
         })
         .catch((err) => {
           toast.error("Note not created");
@@ -61,23 +65,23 @@ export default function AddNote(props) {
           <div className="titleInput" data-testid="title" >
             <InputBase className="titleName"
               placeholder="Title"
-              value={title}
+              value={noteData?.title}
               fullWidth
               multiline
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => noteChangeHandler(e, "title")}
             />
           </div>
         </div>
         <div className="simpleNoteShow"
-          style={{ display: setNote ? "block" : "none" }}
+          style={{ display: setNoteData ? "block" : "none" }}
         >
           <div className="noteInput" data-testid="description">
             <InputBase
               placeholder="Take a notes"
-              value={note}
+              value={noteData?.description}
               fullWidth
               multiline
-              onChange={(e) => setNote(e.target.value)}
+              onChange={(e) => noteChangeHandler(e, "description")}
             />
           </div>
         </div>
@@ -88,15 +92,10 @@ export default function AddNote(props) {
         style={{ display: showTitle ? "block" : "none" }}
       >
         <div className="addNoteOptions">
-          <NoteOptions
-          />
-          {trash ? (
-            " "
-          ) : (
-            <div className="closeNotes">
-              <IconButton className="closeNotes" data-testid="submit" onClick={addNote}> Add  </IconButton>
-            </div>
-          )}
+          <NoteOptions />
+          <div className="closeNotes">
+            <IconButton className="closeNotes" data-testid="submit" onClick={addNote}> close  </IconButton>
+          </div>
         </div>
       </div>
     </div>
