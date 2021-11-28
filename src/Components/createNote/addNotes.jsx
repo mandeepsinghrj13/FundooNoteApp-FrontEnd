@@ -2,7 +2,6 @@
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
-//import { Button } from "@material-ui/core";
 import NoteOptions from "../NoteOptions/NoteOptions";
 import Services from "../../Services/NoteServices";
 import { toast, ToastContainer } from "react-toastify";
@@ -22,7 +21,12 @@ export default function AddNote(props) {
     setNoteData({ ...noteData, [key]: e.target.value });
   }
 
-  const addNote = () => {
+  const resetHandler = () => {
+    let key = ["title", "description"]
+    key.map((key) => (setNoteData({ [key]: "" })));
+  }
+
+  const saveNote = () => {
     const formval = {
       title: noteData?.title,
       description: noteData?.description,
@@ -32,8 +36,9 @@ export default function AddNote(props) {
       Services.addNote(formval)
         .then((data) => {
           toast.success("Notes created");
+          titleDisplay(false);
+          resetHandler();
           props.getall();
-          window.location.reload();
         })
         .catch((err) => {
           toast.error("Note not created");
@@ -94,7 +99,7 @@ export default function AddNote(props) {
         <div className="addNoteOptions">
           <NoteOptions />
           <div className="closeNotes">
-            <IconButton className="closeNotes" data-testid="submit" onClick={addNote}> close  </IconButton>
+            <IconButton className="closeNotes" data-testid="submit" onClick={saveNote}> close  </IconButton>
           </div>
         </div>
       </div>
