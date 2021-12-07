@@ -79,13 +79,14 @@ export default function DisplayNotes(props) {
     );
   };
 
+
   return (
-    <div className="mainContent">
+    <div className="mainContent" onClick={props.saveNote} >
       <div className="displayNotes">
         <Note />
       </div>
-      <div>
-        <Dialog open={open} onClose={dialogClose}>
+      <div >
+        <Dialog open={open} onClose={dialogClose} >
           <AddNote
             setEdited={edit}
             dialogOff={dialogClose}

@@ -7,6 +7,7 @@ import Services from "../../Services/NoteServices";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./addNotes.scss";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 export default function AddNote(props) {
   const [showTitle, titleDisplay] = React.useState(props.editOpen);
@@ -22,8 +23,7 @@ export default function AddNote(props) {
   }
 
   const resetHandler = () => {
-    let key = ["title", "description"]
-    key.map((key) => (setNoteData({ [key]: "" })));
+    setNoteData({ title: "", description: "" })
   }
 
   const saveNote = () => {
@@ -32,6 +32,9 @@ export default function AddNote(props) {
       description: noteData?.description,
       id: [noteData?._id]
     };
+    if (!formval.title && !formval.description) {
+      return
+    }
     if (!edit) {
       Services.addNote(formval)
         .then((data) => {
@@ -58,51 +61,53 @@ export default function AddNote(props) {
   };
 
   return (
-    <div
-      className="addNotesMain"
-    //onClickAway={addNote}
-    >
-      <div className="notesField" onClick={clickedNote}>
+    <ClickAwayListener onClickAway={saveNote}>
+      <div
+        className="addNotesMain"
+      //onClickAway={addNote}
+      >
+        <div className="notesField" onClick={clickedNote}>
+          <div
+            className="addNoteField"
+            style={{ display: showTitle ? "block" : "none" }}
+          >
+            <div className="titleInput" data-testid="title" >
+              <InputBase className="titleName"
+                placeholder="Title"
+                value={noteData?.title}
+                fullWidth
+                multiline
+                onChange={(e) => noteChangeHandler(e, "title")}
+              />
+            </div>
+          </div>
+          <div className="simpleNoteShow"
+            style={{ display: setNoteData ? "block" : "none" }}
+          >
+            <div className="noteInput" data-testid="description">
+              <InputBase
+                placeholder="Take a notes"
+                value={noteData?.description}
+                fullWidth
+                multiline
+                onChange={(e) => noteChangeHandler(e, "description")}
+              />
+            </div>
+          </div>
+          <ToastContainer />
+        </div>
         <div
           className="addNoteField"
           style={{ display: showTitle ? "block" : "none" }}
         >
-          <div className="titleInput" data-testid="title" >
-            <InputBase className="titleName"
-              placeholder="Title"
-              value={noteData?.title}
-              fullWidth
-              multiline
-              onChange={(e) => noteChangeHandler(e, "title")}
-            />
-          </div>
-        </div>
-        <div className="simpleNoteShow"
-          style={{ display: setNoteData ? "block" : "none" }}
-        >
-          <div className="noteInput" data-testid="description">
-            <InputBase
-              placeholder="Take a notes"
-              value={noteData?.description}
-              fullWidth
-              multiline
-              onChange={(e) => noteChangeHandler(e, "description")}
-            />
-          </div>
-        </div>
-        <ToastContainer />
-      </div>
-      <div
-        className="addNoteField"
-        style={{ display: showTitle ? "block" : "none" }}
-      >
-        <div className="addNoteOptions">
-          <NoteOptions />
-          <div className="closeNotes">
-            <IconButton className="closeNotes" data-testid="submit" onClick={saveNote}> close  </IconButton>
+          <div className="addNoteOptions">
+            <NoteOptions />
+            <div className="closeNotes">
+              <IconButton className="closeNotes" data-testid="submit" onClick={saveNote}> close  </IconButton>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ClickAwayListener>
   );
 }
