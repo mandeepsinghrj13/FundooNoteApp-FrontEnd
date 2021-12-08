@@ -50,7 +50,7 @@ export default function AddNote(props) {
     else {
       Services.updateNotes(formval)
         .then((data) => {
-          toast.success("Note Update");
+          toast.success("Note Updates");
           props.getall();
         })
         .catch((err) => {
