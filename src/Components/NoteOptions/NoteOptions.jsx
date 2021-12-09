@@ -39,7 +39,7 @@ export default function NoteOptions(props) {
         props.getall();
       })
       .catch((err) => {
-        console.log("Error while deleting" + err);
+        console.log("Error while Deleting" + err);
       });
   };
 
