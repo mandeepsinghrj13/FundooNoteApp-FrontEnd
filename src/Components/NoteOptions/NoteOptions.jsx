@@ -35,7 +35,7 @@ export default function NoteOptions(props) {
     };
     Services.deleteForever(data)
       .then((data) => {
-        toast.success("Note Deleted successfully");
+        toast.success("Note Deleted Successfully");
         props.getall();
       })
       .catch((err) => {
