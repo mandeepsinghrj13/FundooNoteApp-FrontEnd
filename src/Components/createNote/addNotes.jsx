@@ -38,7 +38,7 @@ export default function AddNote(props) {
     if (!edit) {
       Services.addNote(formval)
         .then((data) => {
-          toast.success("Notes created");
+          toast.success("Notes created successfully");
           titleDisplay(false);
           resetHandler();
           props.getall();
